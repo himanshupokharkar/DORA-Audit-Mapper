@@ -1,0 +1,270 @@
+═══════════════════════════════════════════════════════════════════════
+DORA AUDIT MAPPER — EXCEL TESTING WORKBOOK CONVERSION PROMPT
+═══════════════════════════════════════════════════════════════════════
+
+HOW TO USE THIS PROMPT
+───────────────────────
+1. Run your mapping in your DORA Audit Mapper Claude Project as normal.
+2. Copy the ENTIRE output (including the Article Text Appendix at the end).
+3. Open a new chat on claude.ai (not your Project).
+4. Paste this prompt, replacing [PASTE YOUR FULL MAPPING OUTPUT HERE]
+   with the copied mapping output.
+5. Claude will generate and deliver the Excel file for download.
+
+You can shorten this to just "Convert this DORA mapping output into the
+standard Excel testing workbook format. [PASTE OUTPUT]" once the format
+is established across a few runs.
+
+═══════════════════════════════════════════════════════════════════════
+THE PROMPT (copy everything below this line)
+═══════════════════════════════════════════════════════════════════════
+
+Please convert the following DORA mapping output into an Excel testing
+workbook. Build the file using Python and openpyxl, and deliver it as
+a downloadable Excel file.
+
+The workbook must have exactly four sheets in this order:
+
+───────────────────────────────────────────────────────────────────────
+SHEET 1 — "1. Audit Context"
+───────────────────────────────────────────────────────────────────────
+Two columns (A: label, B: value). Column A width 30, Column B width 80.
+
+Title row (row 1): "DORA Audit Testing Workbook" — merged across A:B,
+dark blue fill (hex 305496), white bold Arial 16pt, height 30.
+
+Pre-populate the following rows from the mapping's Audit Context:
+  - Audit topic
+  - Entity type
+  - Audit objective
+  - Scope exclusions applied
+
+Then include these fillable rows (value column left blank, highlighted
+yellow fill hex FFF2CC):
+  - (blank separator row)
+  - Engagement details  (section label, no yellow fill)
+  - Audit lead
+  - Audit team members
+  - Reviewer
+  - Audit period (start)
+  - Audit period (end)
+  - Fieldwork start date
+  - Fieldwork completion date
+  - (blank separator row)
+  - Source files loaded  (pre-populate: "Main DORA (Reg 2022/2554);
+    RTS ICT-RMF (Reg 2024/1774); RTS TLPT (Reg 2025/1190); RTS
+    Incident Classification (Reg 2024/1772); RTS Incident Reporting
+    (Reg 2025/301)")
+  - (blank separator row)
+  - How to use this workbook  (label, bold, no fill)
+
+The "How to use this workbook" value cell must contain the following
+eight numbered steps verbatim:
+
+1.  START WITH AUDIT CONTEXT (this sheet)
+    Complete the engagement details — audit lead, team members,
+    reviewer, audit period and fieldwork dates. These fields are
+    highlighted in yellow and should be filled in before fieldwork
+    begins.
+
+2.  REVIEW THE TESTING PROGRAMME (Sheet 2)
+    Each row represents one DORA regulatory article or sub-provision
+    in scope for this audit. Rows are colour-coded by section:
+    • Green = Section 1 (Direct obligations — must be tested without
+      preconditions)
+    • Amber = Section 2 (Conditional obligations — evaluate the trigger
+      condition before testing)
+    • Navy  = Section 4 (Awareness items — review context but no direct
+      testing obligation)
+
+3.  DESIGN YOUR TESTING PROCEDURES
+    For each row, complete the 'Testing Procedure' column with the
+    specific steps you will take to test the obligation. Use the
+    'Obligation Summary' and 'Full Article Text' columns as your
+    reference. For Section 2 rows, confirm the trigger condition is
+    met before proceeding.
+
+4.  RECORD EVIDENCE
+    As fieldwork progresses, complete 'Evidence Requested' (what you
+    asked for), 'Evidence Obtained' (what was received and its
+    reference), 'Sample Size' (how many items tested), and 'Testing
+    Date' and 'Tester' columns.
+
+5.  RECORD YOUR TESTING RESULT
+    Use the dropdown in the 'Testing Result' column to record the
+    outcome for each row:
+    • Compliant       — control operates as required
+    • Non-compliant   — control is absent or failed
+    • Partial         — control partially operates but has gaps
+    • N/A             — provision confirmed not applicable after
+                        trigger evaluation
+    • Not tested      — in scope but not tested in this cycle
+
+6.  RECORD OBSERVATIONS AND FOLLOW-UPS
+    Use the 'Observations / Findings' column to document any findings,
+    exceptions or notes. Set 'Follow-up Required' to Yes where further
+    action is needed and describe the follow-up in the Observations
+    column.
+
+7.  REVIEW EXCLUDED ITEMS (Sheet 4)
+    Sheet 4 lists all DORA provisions that were retrieved during the
+    regulatory mapping but deliberately excluded from scope, with
+    reasons. Review this sheet to confirm you agree with the exclusion
+    rationale before signing off the audit scope.
+
+8.  COVERAGE ASSESSMENT (Sheet 3)
+    Sheet 3 contains the regulatory coverage assessment, including
+    provisions not yet loaded in the knowledge base, confidence level,
+    and specific compliance-review testing considerations. Review this
+    before finalising your audit programme.
+
+Row height for the How to use row: 320. Freeze pane at A2.
+
+───────────────────────────────────────────────────────────────────────
+SHEET 2 — "2. Testing Programme"
+───────────────────────────────────────────────────────────────────────
+This is the main audit working sheet. One row per article cited in
+Sections 1, 2, and 4 of the mapping. Do NOT include Section 3 or
+Section 5 items as rows.
+
+COLUMNS (exactly in this order, A through W):
+
+  A  — Row #  (sequential integer, 1 upwards)
+  B  — Section  (e.g. "Section 1", "Section 2", "Section 4")
+  C  — Article Reference  (e.g. "Art.10(1)", "Art.19(1)(a)")
+  D  — Source Document  (e.g. "Main DORA", "RTS Incident Classification")
+  E  — Article Title  (from the mapping or Article Text Appendix)
+  F  — Sub-Topic  (from the mapping)
+  G  — Obligation Type  (Direct / Conditional / Permissive / Indirect)
+  H  — Entity Scope  (from the mapping)
+  I  — Trigger Condition  (for Section 2 rows; blank for Section 1)
+  J  — Obligation Summary  (from the mapping)
+  K  — Full Article Text  (verbatim paragraph text from the Article
+       Text Appendix; if not in Appendix use the obligation summary)
+  L  — Audit Action / Why Applicable  (from the mapping)
+  M  — Expanded by  (from the mapping's Expanded by column)
+  N  — Testing Procedure  (blank — auditor fills)
+  O  — Sample Size  (blank — auditor fills)
+  P  — Evidence Requested  (blank — auditor fills)
+  Q  — Evidence Obtained (Y/N + ref)  (blank — auditor fills)
+  R  — Testing Date  (blank — auditor fills)
+  S  — Tester  (blank — auditor fills)
+  T  — Testing Result  (blank with dropdown: Compliant / Non-compliant
+       / Partial / N/A / Not tested)
+  U  — Observations / Findings  (blank — auditor fills)
+  V  — Follow-up Required  (blank with dropdown: Yes / No)
+  W  — Cross-References  (blank — auditor fills)
+
+COLUMN WIDTHS:
+  A=7, B=10, C=18, D=22, E=25, F=30, G=14, H=25, I=35, J=50,
+  K=80, L=40, M=35, N=40, O=12, P=30, Q=25, R=14, S=18,
+  T=18, U=40, V=14, W=30
+
+HEADER ROW formatting:
+  - Font: Arial 11pt bold white
+  - Fill: dark blue hex 305496
+  - Alignment: centre horizontal, centre vertical, wrap text
+  - Apply a thin light grey border (hex CCCCCC) to all header cells
+
+DATA ROW formatting:
+  - Font: Arial 10pt
+  - Alignment: wrap text, top vertical, left horizontal
+  - Thin light grey border on all cells
+  - Row height: 90
+  - Section colour coding applied to column B only:
+      Section 1 → green fill hex 1F6F3E, white bold text
+      Section 2 → amber fill hex C77700, white bold text
+      Section 4 → navy fill hex 1F4E78, white bold text
+      Column B text alignment: centre horizontal, centre vertical
+
+DATA VALIDATION:
+  - Column T (Testing Result): dropdown list
+    "Compliant,Non-compliant,Partial,N/A,Not tested"
+  - Column V (Follow-up Required): dropdown list "Yes,No"
+  - Apply validation to all data rows (row 2 to last data row)
+
+FREEZE PANES at D2 (freeze row 1 header and columns A-C).
+
+ROW ORDER: All Section 1 rows first, then all Section 2 rows, then
+all Section 4 rows. Within each section, preserve the order they
+appear in the mapping output.
+
+───────────────────────────────────────────────────────────────────────
+SHEET 3 — "3. Coverage Assessment"
+───────────────────────────────────────────────────────────────────────
+Two columns (A: label, B: value). Column A width 35, Column B width 70.
+
+Title row: "Coverage Assessment" — merged A:B, purple fill hex 5B2C6F,
+white bold Arial 16pt, height 30.
+
+Reproduce the full Coverage Assessment from the mapping output:
+  - Total provisions retrieved (number)
+  - Section 1 — Directly applicable (number)
+  - Section 2 — Conditionally applicable (number)
+  - Section 3 — Cross-referenced RTS/ITS (number)
+  - Section 4 — Indirect or awareness (number)
+  - Section 5 — Excluded from scope (number)
+  - (blank row)
+  - Documents not yet loaded but referenced (each on its own row,
+    indented with two spaces)
+  - (blank row)
+  - Confidence (level and rationale)
+  - (blank row)
+  - Metadata-substance discrepancies flagged (if any, from the mapping)
+  - (blank row)
+  - Audit-objective considerations (if audit objective was provided;
+    each sub-point on its own row, indented with two spaces)
+  - (blank row)
+  - Gaps to flag for manual review (each gap on its own row, indented
+    with two spaces)
+
+Section labels ("Documents not yet loaded", "Confidence",
+"Audit-objective considerations", "Gaps to flag") should be bold.
+
+All cells: Arial 10pt, wrap text, top vertical, left horizontal.
+Freeze pane at A2.
+
+───────────────────────────────────────────────────────────────────────
+SHEET 4 — "4. Excluded Items"
+───────────────────────────────────────────────────────────────────────
+Lists every Section 5 item from the mapping.
+
+COLUMNS (exactly in this order, A through E):
+
+  A  — Row #  (sequential integer)
+  B  — Article Reference
+  C  — Source Document
+  D  — Obligation Type  (Empowerment / Procedural / Definition /
+       Scope / Entity-type)
+  E  — Reason for Exclusion
+
+COLUMN WIDTHS: A=7, B=22, C=30, D=18, E=80
+
+HEADER ROW: Arial 11pt bold white, grey fill hex 7F7F7F, centre
+alignment, thin grey border.
+
+DATA ROWS: Arial 10pt, wrap text, top vertical, left horizontal,
+thin grey border, row height 40.
+
+Freeze pane at A2.
+
+───────────────────────────────────────────────────────────────────────
+GENERAL FORMATTING RULES
+───────────────────────────────────────────────────────────────────────
+  - Font throughout: Arial
+  - No formula errors (#REF!, #DIV/0!, #VALUE!, #N/A, #NAME?)
+  - All sheets have frozen panes as specified
+  - File format: .xlsx
+  - Filename: DORA_Testing_Workbook_[AuditTopic]_[EntityType].xlsx
+    (use a short version of each, e.g.
+    DORA_Testing_Workbook_Encryption_InvestmentFirm.xlsx)
+
+───────────────────────────────────────────────────────────────────────
+MAPPING OUTPUT TO CONVERT
+───────────────────────────────────────────────────────────────────────
+
+[PASTE YOUR FULL MAPPING OUTPUT HERE]
+
+═══════════════════════════════════════════════════════════════════════
+END OF PROMPT
+═══════════════════════════════════════════════════════════════════════
