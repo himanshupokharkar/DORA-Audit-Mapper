@@ -22,10 +22,9 @@ re-deriving scope from scratch every time.
   formatted audit testing workbook
 - A **sample Excel testing workbook** showing what fieldwork output
   looks like for an incident management audit
-- A **methodology document** for chunking and tagging new RTS or ITS
-  documents as they are published
 - **Reusable user prompts** for common audit-mapping queries
-- **Worked examples** showing real mapping output across four audit
+- **Three worked examples** showing real v8 mapping output across encryption,
+  incident management (end-to-end), and TLPT (end-to-end)
   topics
 
 This is regulatory knowledge plus a workflow, not a software
@@ -186,14 +185,10 @@ DORA-Audit-Mapper/
 │   ├── DORA_Audit_Mapper_User_Prompts_v3.txt
 │   └── DORA_Excel_Conversion_Prompt.txt
 │
-├── methodology/
-│   └── DORA_Knowledge_Base_Creator_Methodology.txt
-│
 ├── examples/
 │   ├── 01_encryption_mapping.md
 │   ├── 02_incident_management_mapping.md
 │   ├── 03_tlpt_mapping.md
-│   ├── 04_third_party_risk_mapping.md
 │   └── DORA_Testing_Workbook_Sample_Incident_Management.xlsx
 │
 └── docs/
@@ -249,10 +244,7 @@ Key design principles:
    unloaded instruments and metadata discrepancies so the auditor
    knows exactly what the system could and could not retrieve
 
-See `methodology/DORA_Knowledge_Base_Creator_Methodology.txt` for
-the complete process.
 
----
 
 ## Contributing
 
@@ -271,9 +263,11 @@ Please open an issue first to discuss substantive changes.
 
 ## Status And Limitations
 
-**Status**: Production-tested across five audit topics (encryption,
-incident management, TLPT, third-party risk, BCP testing). Validated
-on Claude Sonnet 4.6 with all five knowledge base files loaded.
+**Status**: System prompt v8 validated on three audit topics (encryption,
+incident management end-to-end, and TLPT end-to-end) using Claude Sonnet
+4.6 with all five knowledge base files loaded. System prompt v6 was
+additionally validated on third-party risk and BCP testing. All five
+topics have confirmed example outputs in the examples/ folder.
 
 **Quality of mappings**: Strong for the five loaded instruments.
 Quality drops in domains covered by unloaded instruments — see
